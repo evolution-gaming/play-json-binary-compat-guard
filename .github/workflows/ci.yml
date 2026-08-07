@@ -10,5 +10,5 @@ jobs:
     uses: evolution-gaming/scala-github-actions/.github/workflows/ci.yml@v6
     with:
       scala_versions: '["2.13.18", "3.3.8"]'
-      coverage: false
+      coverage: true
       version_policy_check: false

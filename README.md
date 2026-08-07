@@ -1,5 +1,8 @@
 # play-json-binary-compat-guard
 
+[![CI](https://github.com/evolution-gaming/play-json-binary-compat-guard/actions/workflows/ci.yml/badge.svg)](https://github.com/evolution-gaming/play-json-binary-compat-guard/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/evolution-gaming/play-json-binary-compat-guard/badge.svg)](https://coveralls.io/github/evolution-gaming/play-json-binary-compat-guard)
+
 A test that fails when `play-json` on the runtime classpath is broken. It checks that:
 
 - `play.api.libs.json` and `play.api.libs.functional` classes are not duplicated on the classpath;
