@@ -8,4 +8,6 @@ on:
 jobs:
   release:
     uses: evolution-gaming/scala-github-actions/.github/workflows/release.yml@v6
+    with:
+      verify_sbt_command: '+clean; +check; +all testFull package'
     secrets: inherit

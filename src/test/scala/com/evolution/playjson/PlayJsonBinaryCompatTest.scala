@@ -68,9 +68,32 @@ class PlayJsonBinaryCompatTest extends FunSuite {
     assertEquals(groupOf("file:/lib/fat.jar"), None)
   }
 
+  test("group is derived from a flattened lib layout") {
+    assertEquals(groupOf("file:/opt/docker/lib/com.typesafe.play.play-json_2.13-2.10.8.jar"), Some(Legacy))
+    assertEquals(groupOf("file:/opt/docker/lib/org.playframework.play-json_2.13-3.0.6.jar"), Some(Current))
+  }
+
+  test("flattened legacy coordinates are reported") {
+    val flattened = Map(
+      PlayJson -> List("file:/opt/docker/lib/com.typesafe.play.play-json_2.13-2.10.8.jar"),
+      PlayFunctional -> List("file:/opt/docker/lib/com.typesafe.play.play-functional_2.13-2.10.8.jar")
+    )
+    val problems = provenance(locate(flattened))
+    assertEquals(problems.size, 2)
+    assert(problems.forall(_.contains(Legacy)), problems)
+  }
+
   test("location is derived from a resource url") {
     val resource = Classpath.resourceOf(PlayJson)
     assertEquals(Classpath.locationOf(s"jar:file:/lib/play-json.jar!/$resource", resource), "file:/lib/play-json.jar")
     assertEquals(Classpath.locationOf(s"file:/target/classes/$resource", resource), "file:/target/classes/")
+  }
+
+  test("nested jars are distinguished") {
+    val resource = Classpath.resourceOf(PlayJson)
+    def nested(version: String) =
+      Classpath.locationOf(s"jar:file:/app.jar!/BOOT-INF/lib/play-json_2.13-$version.jar!/$resource", resource)
+    assertEquals(nested("2.10.8"), "file:/app.jar!/BOOT-INF/lib/play-json_2.13-2.10.8.jar")
+    assertNotEquals(nested("2.10.8"), nested("3.0.6"))
   }
 }

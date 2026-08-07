@@ -22,7 +22,7 @@ private[playjson] object Classpath {
 
   def locationOf(url: String, resource: String): String = {
     val path = url.stripPrefix("jar:")
-    path.indexOf("!/") match {
+    path.lastIndexOf("!/") match {
       case -1 => path.stripSuffix(resource)
       case i  => path.substring(0, i)
     }
