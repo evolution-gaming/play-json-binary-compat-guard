@@ -45,7 +45,9 @@ object PlayJsonBinaryCompat {
   private[playjson] def groupOf(location: String): Option[String] = {
     val path = location.replace('\\', '/')
     def contains(group: String) =
-      path.contains(s"/${group.replace('.', '/')}/") || path.contains(s"/$group/")
+      path.contains(s"/${group.replace('.', '/')}/") ||
+        path.contains(s"/$group/") ||
+        path.contains(s"/$group.")
     if (contains(Legacy)) Some(Legacy)
     else if (contains(Current)) Some(Current)
     else None

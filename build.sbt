@@ -15,7 +15,7 @@ addCommandAlias("check", "scalafmtSbtCheck; scalafmtCheckAll")
 
 lazy val root = project
   .in(file("."))
-  .aggregate(verifyPlayframework, verifyTypesafe)
+  .aggregate(verifyPlayframework, verifyTypesafe, verifyMixed)
   .settings(
     name := "play-json-binary-compat-guard",
     libraryDependencies += munit,
@@ -38,6 +38,18 @@ lazy val verifyTypesafe = project
   .settings(
     name := "verify-typesafe",
     libraryDependencies += "com.typesafe.play" %% "play-json" % "2.10.8" % Test
+  )
+
+lazy val verifyMixed = project
+  .in(file("verify/mixed"))
+  .dependsOn(LocalProject("root") % "test->compile")
+  .settings(verifySettings)
+  .settings(
+    name := "verify-mixed",
+    libraryDependencies ++= Seq(
+      "org.playframework" %% "play-json" % "3.0.6" % Test,
+      "com.typesafe.play" %% "play-functional" % "2.10.8" % Test
+    )
   )
 
 lazy val verifySettings: Seq[Setting[?]] = Seq(
