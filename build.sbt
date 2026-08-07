@@ -3,6 +3,11 @@ ThisBuild / scalaVersion := "2.13.18"
 ThisBuild / crossScalaVersions := Seq("2.13.18", "3.3.8")
 ThisBuild / homepage := Some(uri("https://github.com/evolution-gaming/play-json-binary-compat-guard"))
 ThisBuild / licenses := Seq("MIT" -> uri("https://opensource.org/licenses/MIT"))
+ThisBuild / organizationName := "Evolution"
+ThisBuild / organizationHomepage := Some(uri("https://evolution.com"))
+ThisBuild / versionScheme := Some("early-semver")
+ThisBuild / publishTo := Some(Resolver.evolutionReleases)
+ThisBuild / credentials ++= sys.env.get("SBT_CREDENTIALS").map { path => Credentials(new java.io.File(path)) }
 
 val munit = "org.scalameta" %% "munit" % "1.3.4"
 
