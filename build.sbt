@@ -6,6 +6,7 @@ ThisBuild / licenses := Seq("MIT" -> uri("https://opensource.org/licenses/MIT"))
 ThisBuild / organizationName := "Evolution"
 ThisBuild / organizationHomepage := Some(uri("https://evolution.com"))
 ThisBuild / versionScheme := Some("early-semver")
+ThisBuild / versionPolicyIntention := Compatibility.BinaryCompatible
 ThisBuild / publishTo := Some(Resolver.evolutionReleases)
 ThisBuild / credentials ++= sys.env.get("SBT_CREDENTIALS").map { path => Credentials(new java.io.File(path)) }
 

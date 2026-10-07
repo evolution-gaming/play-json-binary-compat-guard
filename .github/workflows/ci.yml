@@ -2,13 +2,12 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
+
+permissions:
+  contents: read
 
 jobs:
   test:
-    uses: evolution-gaming/scala-github-actions/.github/workflows/ci.yml@v6
-    with:
-      scala_versions: '["2.13.18", "3.3.8"]'
-      coverage: true
-      version_policy_check: false
+    uses: evolution-gaming/scala-github-actions/.github/workflows/ci.yml@999c04ccae0d79a8a0c12ed7d71136762b2ae8c1 # v7.1.0
