@@ -37,7 +37,7 @@ lazy val verifyTypesafe = project
   .settings(verifySettings)
   .settings(
     name := "verify-typesafe",
-    libraryDependencies += "com.typesafe.play" %% "play-json" % "2.10.8" % Test
+    libraryDependencies += "com.typesafe.play" %% "play-json" % "2.10.8" % Test // scala-steward:off required for tests!
   )
 
 lazy val verifyMixed = project
@@ -48,7 +48,7 @@ lazy val verifyMixed = project
     name := "verify-mixed",
     libraryDependencies ++= Seq(
       "org.playframework" %% "play-json" % "3.0.6" % Test,
-      "com.typesafe.play" %% "play-functional" % "2.10.8" % Test
+      "com.typesafe.play" %% "play-functional" % "2.10.8" % Test // scala-steward:off required for tests!
     )
   )
 
