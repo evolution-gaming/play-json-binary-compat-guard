@@ -9,7 +9,7 @@ ThisBuild / versionScheme := Some("early-semver")
 ThisBuild / publishTo := Some(Resolver.evolutionReleases)
 ThisBuild / credentials ++= sys.env.get("SBT_CREDENTIALS").map { path => Credentials(new java.io.File(path)) }
 
-val munit = "org.scalameta" %% "munit" % "1.3.4"
+val munit = "org.scalameta" %% "munit" % "1.3.6"
 
 addCommandAlias("check", "scalafmtSbtCheck; scalafmtCheckAll")
 
