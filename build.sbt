@@ -1,6 +1,6 @@
 ThisBuild / organization := "com.evolution"
-ThisBuild / scalaVersion := "2.13.18"
-ThisBuild / crossScalaVersions := Seq("2.13.18", "3.3.8")
+ThisBuild / scalaVersion := "3.10.0"
+ThisBuild / crossScalaVersions := Seq("3.10.0", "3.3.8")
 ThisBuild / homepage := Some(uri("https://github.com/evolution-gaming/play-json-binary-compat-guard"))
 ThisBuild / licenses := Seq("MIT" -> uri("https://opensource.org/licenses/MIT"))
 ThisBuild / organizationName := "Evolution"
